@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Time Progress Bar Graph</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #1f1f1f;
+      color: white;
+    }
+    .chart {
+      width: 400px;
+      text-align: center;
+    }
+    .bar {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .bar-name {
+      width: 100px;
+    }
+    .bar-progress {
+      flex-grow: 1;
+      height: 20px;
+      border-radius: 5px;
+      background-color: #727272;
+      margin-left: 10px;
+      overflow: hidden;
+      margin-right: 10px;
+    }
+    .bar-fill {
+      display: block;
+      height: 100%;
+      background-color: #72db1c;
+    }
+    .percentage {
+      margin-top: 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart">
+    <div class="bar">
+      <span class="bar-name">Day:</span>
+      <div class="bar-progress">
+        <div class="bar-fill" id="dayBar"></div>
+      </div>
+      <span class="percentage" id="dayPercentage"></span>
+    </div>
+    <div class="bar">
+      <span class="bar-name">Week:</span>
+      <div class="bar-progress">
+        <div class="bar-fill" id="weekBar"></div>
+      </div>
+      <span class="percentage" id="weekPercentage"></span>
+    </div>
+    <div class="bar">
+      <span class="bar-name">Month:</span>
+      <div class="bar-progress">
+        <div class="bar-fill" id="monthBar"></div>
+      </div>
+      <span class="percentage" id="monthPercentage"></span>
+    </div>
+    <div class="bar">
+      <span class="bar-name">Year:</span>
+      <div class="bar-progress">
+        <div class="bar-fill" id="yearBar"></div>
+      </div>
+      <span class="percentage" id="yearPercentage"></span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
