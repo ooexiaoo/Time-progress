@@ -1,0 +1,117 @@
+:root{
+    --crust: #11111b;
+    --mantle: #181825;
+    --base: #1e1e2e;
+    --text: #cdd6f4;
+    --red: #f38ba8;
+    --mauve: #cba6f7;
+    --flamingo: #f2cdcd;
+    --blue: #89b4fa;
+    --lavender: #b4befe;
+    --green: #a6e3a1;
+    --teal: #94e2d5;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1f1f1f;
+    color: white;
+}
+  .chart {
+    width: 400px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+  .bar {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  .bar-name {
+    width: 100px;
+  }
+  .bar-progress {
+    flex-grow: 1;
+    height: 20px;
+    border-radius: 5px;
+    background-color: var(--crust);
+    margin-left: 0;
+    overflow: hidden;
+    margin-right: 10px;
+  }
+  .bar-fill {
+    display: block;
+    height: 100%;
+    background-color: var(--red);
+  }
+  .percentage {
+    margin-top: 5px;
+    font-weight: bold;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+  }
+  
+  .fullscreen-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Full viewport width */
+    height: 100%; /* Full viewport height */
+    background: var(--red);
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+  }
+  .fullscreen-form input {
+    border: none;
+    font-size: 20px;
+    border-radius: 1em;
+    padding: 10px;
+    margin: 5px;
+  }
+  .fullscreen-form button {
+    margin-top: 5px;
+    font-size: 20px;
+    font-size: bold;
+    border-radius: 1em;
+    border: none;
+    padding: 20px;
+  }
+  
+  
+  .commits-graph {
+    display: grid;
+    grid-template-columns: repeat(10, 10px);
+    grid-template-rows: repeat(10, 10px);
+    gap: 30px;
+    margin-top: 20px;
+  }
+  
+  .dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--text);
+  }

@@ -3,52 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Time Progress Bar Graph</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #1f1f1f;
-      color: white;
-    }
-    .chart {
-      width: 400px;
-      text-align: center;
-    }
-    .bar {
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-    }
-    .bar-name {
-      width: 100px;
-    }
-    .bar-progress {
-      flex-grow: 1;
-      height: 20px;
-      border-radius: 5px;
-      background-color: #727272;
-      margin-left: 10px;
-      overflow: hidden;
-      margin-right: 10px;
-    }
-    .bar-fill {
-      display: block;
-      height: 100%;
-      background-color: #72db1c;
-    }
-    .percentage {
-      margin-top: 5px;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="chart">
+  <h2>Your Time</h2>
+  <div class="chart" id="timeChartContainer">
     <div class="bar">
       <span class="bar-name">Day:</span>
       <div class="bar-progress">
@@ -77,6 +36,16 @@
       </div>
       <span class="percentage" id="yearPercentage"></span>
     </div>
+  </div>
+
+  <div class="container">
+    <form id="ageForm" class="fullscreen-form">
+      <label for="ageInput">Enter Your Age:</label>
+      <input type="number" id="ageInput" min="1" placeholder="18" required>
+      <button type="submit">Submit</button>
+    </form>
+    <h2>Your Life Graph</h2>
+    <div id="commitsGraph" class="commits-graph" style="display: none;"></div>
   </div>
 
   <script src="script.js"></script>
