@@ -182,3 +182,29 @@ function setFocus() {
 }
 
 window.addEventListener('load', setFocus);
+
+// Assuming the div where you want to display the age has the ID 'yourage'
+/* const yourage = document.getElementById('yourage');
+
+document.getElementById('birthdateForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const birthdateInput = document.getElementById('birthdateInput').value;
+  const [day, month, year] = birthdateInput.split('/');
+  const birthDate = new Date(year, month - 1, day);
+  const currentDate = new Date();
+
+  // Calculate the age
+  let age = currentDate.getFullYear() - birthDate.getFullYear();
+  const monthsDiff = currentDate.getMonth() - birthDate.getMonth();
+
+  if (monthsDiff < 0 || (monthsDiff === 0 && currentDate.getDate() < birthDate.getDate())) {
+    age--;
+  }
+
+  console.log('Calculated Age:', age); // This shows the calculated age in the console
+  
+  // Update the content of the 'yourage' div with the calculated age
+  yourage.textContent = `${age} Years Old Right Now`;
+});
+ */
