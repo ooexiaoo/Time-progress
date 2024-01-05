@@ -53,28 +53,29 @@ updateBars();
 // Update bars every second to reflect the progress
 setInterval(updateBars, 1000);
 
+document.getElementById('birthdateInput').addEventListener('input', function (e) {
+  let input = e.target.value.replace(/\D/g, '').substring(0, 8);
+  input = input.replace(/^(\d{2})(\d{2})(\d{4})$/, '$1/$2/$3');
+  e.target.value = input;
+});
 
-/* GitHub style Graph */
 document.getElementById('birthdateForm').addEventListener('submit', function(e) {
   e.preventDefault();
-
-  // Get the birthdate input value in the format DD/MM/YYYY
   const birthdateInput = document.getElementById('birthdateInput').value;
-  const [day, month, year] = birthdateInput.split('/');
-
-  // Calculate the age based on the birthdate
-  const currentYear = new Date().getFullYear();
-  const birthYear = parseInt(year, 10);
-  const birthDate = new Date(birthYear, parseInt(month, 10) - 1, parseInt(day, 10));
-
-  let age = currentYear - birthYear;
+  const [day, month, year] = birthdateInput.split('/'); // Adjust according to the date input format
+  const birthDate = new Date(year, month - 1, day);
   const currentDate = new Date();
 
-  if (currentDate < birthDate.setFullYear(currentYear)) {
+  // Calculate the age
+  let age = currentDate.getFullYear() - birthDate.getFullYear();
+  const monthsDiff = currentDate.getMonth() - birthDate.getMonth();
+
+  if (monthsDiff < 0 || (monthsDiff === 0 && currentDate.getDate() < birthDate.getDate())) {
     age--;
   }
 
-  // Clear previous graph
+  console.log('Calculated Age:', age);
+
   const commitsGraph = document.getElementById('commitsGraph');
   commitsGraph.innerHTML = '';
 
@@ -84,9 +85,9 @@ document.getElementById('birthdateForm').addEventListener('submit', function(e) 
     dot.classList.add('dot');
 
     if (i < age) {
-      dot.style.backgroundColor = 'var(--teal)';
+      dot.style.backgroundColor = 'var(--red)';
     } else {
-      dot.style.backgroundColor = 'var(--text)';
+      dot.style.backgroundColor = 'var(--teal)';
     }
 
     commitsGraph.appendChild(dot);
@@ -95,8 +96,13 @@ document.getElementById('birthdateForm').addEventListener('submit', function(e) 
   // Hide birthdate input form and show the commits graph
   document.getElementById('birthdateForm').style.display = 'none';
   commitsGraph.style.display = 'grid';
-});
 
+  // Show the time chart container
+  document.getElementById('timeChartContainer').style.display = 'block';
+
+  // Update the progress bars after age submission
+  updateBars();
+});
 
 
 
@@ -105,29 +111,40 @@ document.getElementById('captureButton').addEventListener('click', function() {
   const targetElement = document.getElementById('chartContent');
 
   // Use HTML2Canvas library to capture the content
-  html2canvas(targetElement).then(canvas => {
+  html2canvas(targetElement, {
+    useCORS:true, // Cross-origin requests
+  }).then(canvas => {
     // Convert canvas to base64 image data
     const imageData = canvas.toDataURL('image/png');
 
     // Create a link element to download the screenshot
     const link = document.createElement('a');
     link.href = imageData;
-    link.download = 'screenshot.png'; // Set the filename for the downloaded image
+    link.download = 'My Time.png'; // Set the filename for the downloaded image
     link.click();
   });
 });
 
 /* Age till 100 */
-
-let interval; // Declare interval variable outside the scope
-
 document.getElementById('birthdateForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  const birthdateInput = new Date(document.getElementById('birthdateInput').value);
+  const birthdateInput = document.getElementById('birthdateInput').value;
+
+  // Check if the entered date is in the correct format (DD/MM/YYYY)
+  const datePattern = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+  if (!datePattern.test(birthdateInput)) {
+    alert('Please enter a valid date in DD/MM/YYYY format.');
+    return;
+  }
+
+  const [day, month, year] = birthdateInput.split('/');
+  const formattedDate = `${year}-${month}-${day}`; // Format as YYYY-MM-DD
+
+  const birthDate = new Date(year, month - 1, day);
+  const currentDate = new Date();
 
   // Calculate the remaining time to reach 100 years from the birth date
-  const currentDate = new Date();
-  const targetDate = new Date(birthdateInput.getFullYear() + 100, birthdateInput.getMonth(), birthdateInput.getDate());
+  const targetDate = new Date(birthDate.getFullYear() + 100, birthDate.getMonth(), birthDate.getDate());
 
   // Function to update the countdown timer
   function updateCountdown() {
@@ -157,16 +174,12 @@ document.getElementById('birthdateForm').addEventListener('submit', function(e) 
   updateCountdown();
 
   // Update the countdown every second
-  interval = setInterval(updateCountdown, 1000); // Assign the interval here
+  const interval = setInterval(updateCountdown, 1000);
 });
 
-
 /* Input focus */
-// Function to set focus on the age input field
-/* function setFocus() {
-  document.getElementById('ageInput').focus();
-} */
-/* 
-// Call the setFocus function when the page loads
+function setFocus() {
+  document.getElementById('birthdateInput').focus();
+}
+
 window.addEventListener('load', setFocus);
- */
