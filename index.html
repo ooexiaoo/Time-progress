@@ -5,8 +5,19 @@
   <title>Time Progress Bar Graph</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="/icons8-sand-timer-32.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
 </head>
-<body>
+
+  <div class="container">
+    <form id="ageForm" class="fullscreen-form">
+      <label for="ageInput">Enter Your Age:</label>
+      <input type="number" id="ageInput" min="1" placeholder="18" required>
+      <button type="submit">Submit</button>
+    </form>
+    </div>
+
+    <div id="chartContent" class="chart-content">
+ <!--  <div id="fixedSizeContainer" class="fixed-size-container"> -->
   <h2>What Are You Doing With Your Time?</h2>
   <div class="chart" id="timeChartContainer">
     <div class="bar">
@@ -38,16 +49,11 @@
       <span class="percentage" id="yearPercentage"></span>
     </div>
   </div>
-
-  <div class="container">
-    <form id="ageForm" class="fullscreen-form">
-      <label for="ageInput">Enter Your Age:</label>
-      <input type="number" id="ageInput" min="1" placeholder="18" required>
-      <button type="submit">Submit</button>
-    </form>
     <h2>Your Life in 100 Years Graph</h2>
     <div id="commitsGraph" class="commits-graph" style="display: none;"></div>
   </div>
+</div>
+  <button id="captureButton">Capture Screenshot</button>
 
   <script src="script.js"></script>
 </body>

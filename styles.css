@@ -69,6 +69,15 @@ body {
     width: 100%;
   }
 
+  .fixed-size-container {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    width: 800px; /* Set the desired width */
+    height: 600px; /* Set the desired height */
+    overflow: hidden;
+  }
+
   .fullscreen-form {
     display: flex;
     flex-direction: column;
@@ -115,3 +124,24 @@ body {
     border-radius: 50%;
     background-color: var(--text);
   }
+
+  /* Add your styles for the chart content */
+.chart-content {
+  width: 600px; /* Set the desired width */
+  height: 700px; /* Set the desired height */
+  border: 1px solid #000; /* Add a border to visualize the area to be captured */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#captureButton {
+  margin-top: 15px;
+  font-size: 20px;
+  font-size: bold;
+  border-radius: 1em;
+  border: none;
+  padding: 20px;
+  background-color: var(--red);
+}

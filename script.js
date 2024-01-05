@@ -79,3 +79,21 @@ document.getElementById('ageForm').addEventListener('submit', function(e) {
       // Update the progress bars after age submission
       updateBars();
 });
+
+document.getElementById('captureButton').addEventListener('click', function() {
+  // Get the container element to be captured
+  const targetElement = document.getElementById('chartContent');
+
+  // Use HTML2Canvas library to capture the content
+  html2canvas(targetElement).then(canvas => {
+    // Convert canvas to base64 image data
+    const imageData = canvas.toDataURL('image/png');
+
+    // Create a link element to download the screenshot
+    const link = document.createElement('a');
+    link.href = imageData;
+    link.download = 'screenshot.png'; // Set the filename for the downloaded image
+    link.click();
+  });
+});
+
