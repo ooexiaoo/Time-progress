@@ -62,8 +62,7 @@ document.getElementById('birthdateInput').addEventListener('input', function (e)
 document.getElementById('birthdateForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const birthdateInput = document.getElementById('birthdateInput').value;
-  const [day, month, year] = birthdateInput.split('/'); // Adjust according to the date input format
-  const birthDate = new Date(year, month - 1, day);
+  const birthDate = new Date(birthdateInput);
   const currentDate = new Date();
 
   // Calculate the age

@@ -5,13 +5,14 @@
   <title>Time Progress Bar Graph</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="/icons8-sand-timer-32.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
 </head>
 <body>
   <div class="container">
     <form id="birthdateForm" class="fullscreen-form">
-      <label for="birthdateInput">Enter Your Birth Date (DD/MM/YYYY):</label>
-      <input type="text" id="birthdateInput" placeholder="DD/MM/YYYY" required>
+      <label for="birthdateInput">Enter Your Birth Date without spaces (DDMMYYYY):</label>
+      <input type="text" id="birthdateInput" placeholder="DDMMYYYY" required>
       <button type="submit">Submit</button>
     </form>
     </div>
@@ -50,6 +51,7 @@
     </div>
   </div>
     <h2>Your Life in 100 Years Graph</h2>
+    <p>This is how much you've left</p>
     <div id="countdownTimer" class="countdown-timer"></div>
     <div id="commitsGraph" class="commits-graph" style="display: none;"></div>
   </div>

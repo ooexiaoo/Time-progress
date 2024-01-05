@@ -20,7 +20,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #1f1f1f;
     color: white;
 }
@@ -33,13 +33,15 @@ body {
     align-items: center;
     height: auto;
   }
+
   .bar {
     margin-bottom: 10px;
     display: flex;
-    align-items: center;
+    align-items:flex-start;
+    justify-content:left;
   }
   .bar-name {
-    width: 100px;
+    width: 50px;
   }
   .bar-progress {
     flex-grow: 1;
@@ -74,7 +76,7 @@ body {
     top: -9999px;
     left: -9999px;
     width: 800px; /* Set the desired width */
-    height: 600px; /* Set the desired height */
+    height: 900px; /* Set the desired height */
     overflow: hidden;
   }
 
@@ -115,8 +117,10 @@ body {
     display: grid;
     grid-template-columns: repeat(10, 10px);
     grid-template-rows: repeat(10, 10px);
+    justify-items: center; /* Aligns items horizontally in the center */
+    align-items: center; /* Aligns items vertically in the center */
     gap: 25px;
-    margin-top: 0px;
+    margin:0 0 20px 0;
   }
   
   .dot {
@@ -129,12 +133,21 @@ body {
   /* Add your styles for the chart content */
 .chart-content {
   width: 600px; /* Set the desired width */
-  height: 700px; /* Set the desired height */
+  height: auto; /* Set the desired height */
   border: 1px solid #000; /* Add a border to visualize the area to be captured */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.chart-content h2 {
+  margin: 8px 0;
+
+}
+
+.chart-content p {
+  margin: 5px 0;
 }
 
 #captureButton {
@@ -152,4 +165,91 @@ body {
   color: var(--red);
   font-weight: bold;
   margin-bottom: 20px;
+}
+
+
+/* Adjustments for smaller screens */
+@media only screen and (max-width: 600px) {
+
+  body {
+    font-size: 16px;
+  }
+
+  .fullscreen-form {
+    font-size: 16px;
+  }
+
+  .fullscreen-form input {
+    font-size: 16px;
+    padding: 5px;
+  }
+
+  .fullscreen-form button {
+    padding: 12px;
+  }
+
+  .chart-content {
+    width: 90%;
+    /* min-height: 550px; */
+    height: auto;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .chart-content h2 {
+    font-size: 20px;
+  }
+
+  .chart {
+    width: 100%;
+  }
+
+  .bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bar-name {
+    width: auto;
+    margin-bottom: 5px;
+  }
+
+  .bar-progress {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .bar-fill {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .percentage {
+    margin-top: 3px;
+  }
+
+  #captureButton {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .countdown-timer {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .dot {
+    width: 20px;
+    height: 20px;
+  }
+
+  .commits-graph {
+    gap: 15px;
+  }
+
+  .fixed-size-container {
+    height: 900px;
+    width: 600px;
+  }
 }
