@@ -122,7 +122,7 @@ body {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: var(--text);
+    background-color: var(--red);
   }
 
   /* Add your styles for the chart content */
@@ -144,4 +144,10 @@ body {
   border: none;
   padding: 20px;
   background-color: var(--red);
+}
+
+.countdown-timer {
+  color: var(--red);
+  font-weight: bold;
+  margin-bottom: 20px;
 }

@@ -53,32 +53,52 @@ updateBars();
 // Update bars every second to reflect the progress
 setInterval(updateBars, 1000);
 
-document.getElementById('ageForm').addEventListener('submit', function(e) {
+
+/* GitHub style Graph */
+document.getElementById('birthdateForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  const age = parseInt(document.getElementById('ageInput').value);
 
-  // Clear previous graph
-  document.getElementById('commitsGraph').innerHTML = '';
+  // Get the birthdate input value in the format DD/MM/YYYY
+  const birthdateInput = document.getElementById('birthdateInput').value;
+  const [day, month, year] = birthdateInput.split('/');
 
-  for (let i = 0; i < 100; i++) {
-      const dot = document.createElement('div');
-      dot.classList.add('dot');
-      if (i < age) {
-          dot.style.backgroundColor = 'var(--teal)'; // Color for years lived
-      }
-      document.getElementById('commitsGraph').appendChild(dot);
+  // Calculate the age based on the birthdate
+  const currentYear = new Date().getFullYear();
+  const birthYear = parseInt(year, 10);
+  const birthDate = new Date(birthYear, parseInt(month, 10) - 1, parseInt(day, 10));
+
+  let age = currentYear - birthYear;
+  const currentDate = new Date();
+
+  if (currentDate < birthDate.setFullYear(currentYear)) {
+    age--;
   }
 
-  // Hide age input form and show commit graph after submission
-  document.getElementById('ageForm').style.display = 'none';
-  document.getElementById('commitsGraph').style.display = 'grid';
+  // Clear previous graph
+  const commitsGraph = document.getElementById('commitsGraph');
+  commitsGraph.innerHTML = '';
 
-      // Show the time chart container
-      document.getElementById('timeChartContainer').style.display = 'block';
+  // Create the commits graph based on the calculated age
+  for (let i = 0; i < 100; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
 
-      // Update the progress bars after age submission
-      updateBars();
+    if (i < age) {
+      dot.style.backgroundColor = 'var(--teal)';
+    } else {
+      dot.style.backgroundColor = 'var(--text)';
+    }
+
+    commitsGraph.appendChild(dot);
+  }
+
+  // Hide birthdate input form and show the commits graph
+  document.getElementById('birthdateForm').style.display = 'none';
+  commitsGraph.style.display = 'grid';
 });
+
+
+
 
 document.getElementById('captureButton').addEventListener('click', function() {
   // Get the container element to be captured
@@ -97,3 +117,56 @@ document.getElementById('captureButton').addEventListener('click', function() {
   });
 });
 
+/* Age till 100 */
+
+let interval; // Declare interval variable outside the scope
+
+document.getElementById('birthdateForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const birthdateInput = new Date(document.getElementById('birthdateInput').value);
+
+  // Calculate the remaining time to reach 100 years from the birth date
+  const currentDate = new Date();
+  const targetDate = new Date(birthdateInput.getFullYear() + 100, birthdateInput.getMonth(), birthdateInput.getDate());
+
+  // Function to update the countdown timer
+  function updateCountdown() {
+    const now = new Date();
+    const remainingTime = targetDate - now;
+
+    if (remainingTime > 0) {
+      const years = Math.floor(remainingTime / (1000 * 60 * 60 * 24 * 365.25));
+      const months = Math.floor((remainingTime % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * (365.25 / 12)));
+      const days = Math.floor((remainingTime % (1000 * 60 * 60 * 24 * (365.25 / 12))) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+      const countdownDisplay = `${years}y ${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      const countdownTimer = document.getElementById('countdownTimer');
+      countdownTimer.textContent = countdownDisplay;
+      countdownTimer.classList.add('countdown-timer');
+    } else {
+      clearInterval(interval);
+      document.getElementById('countdownTimer').textContent = 'You have reached 100 years!';
+    }
+  }
+
+  // Initial call to update countdown
+  updateCountdown();
+
+  // Update the countdown every second
+  interval = setInterval(updateCountdown, 1000); // Assign the interval here
+});
+
+
+/* Input focus */
+// Function to set focus on the age input field
+/* function setFocus() {
+  document.getElementById('ageInput').focus();
+} */
+/* 
+// Call the setFocus function when the page loads
+window.addEventListener('load', setFocus);
+ */
