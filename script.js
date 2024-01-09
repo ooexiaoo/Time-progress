@@ -1,4 +1,3 @@
-// Calculate the percentage of time passed for day, week, month, and year
 function calculateTimePercentage() {
   const now = new Date();
   const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -12,10 +11,10 @@ function calculateTimePercentage() {
   const millisecondsInMonth = 30 * millisecondsInDay; // Approximation
   const millisecondsInYear = 365 * millisecondsInDay; // Approximation
 
-  const dayPercentage = ((now - startOfDay) / millisecondsInDay) * 100;
-  const weekPercentage = ((now - startOfWeek) / millisecondsInWeek) * 100;
-  const monthPercentage = ((now - startOfMonth) / millisecondsInMonth) * 100;
-  const yearPercentage = ((now - startOfYear) / millisecondsInYear) * 100;
+  const dayPercentage = Math.min(((now - startOfDay) / millisecondsInDay) * 100, 100);
+  const weekPercentage = Math.min(((now - startOfWeek) / millisecondsInWeek) * 100, 100);
+  const monthPercentage = Math.min(((now - startOfMonth) / millisecondsInMonth) * 100, 100);
+  const yearPercentage = Math.min(((now - startOfYear) / millisecondsInYear) * 100, 100);
 
   return {
     dayPercentage,
@@ -25,7 +24,6 @@ function calculateTimePercentage() {
   };
 }
 
-// Update the progress bars and percentages
 function updateBars() {
   const percentages = calculateTimePercentage();
 
@@ -42,16 +40,16 @@ function updateBars() {
   document.getElementById('yearPercentage').textContent = formatPercentage(percentages.yearPercentage);
 }
 
-// Function to format percentage with leading zero if necessary
 function formatPercentage(percentage) {
   return percentage.toFixed(2).padStart(5, '0') + '%';
 }
 
-// Update bars on page load
+// Update bars every second
+setInterval(updateBars, 1000);
+
+// Initial update on page load
 updateBars();
 
-// Update bars every second to reflect the progress
-setInterval(updateBars, 1000);
 
 document.getElementById('birthdateInput').addEventListener('input', function (e) {
   let input = e.target.value.replace(/\D/g, '').substring(0, 8);
